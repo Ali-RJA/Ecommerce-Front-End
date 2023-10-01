@@ -4,25 +4,44 @@ import { useState } from "react";
 const PaymentEntry = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [order, setOrder] = useState(location.state.order); // 这里使用了 useState
+  const [order, setOrder] = useState(location.state.order);
+  const [error, setError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setOrder((prevOrder) => ({
       ...prevOrder,
-      [name]: value, // 更新 order 对象的相应属性
+      [name]: value,
     }));
+    setError("");
+  };
+
+  const validateCreditCardNumber = (number) => {
+    const regex = /^\d{16}$/;
+    return regex.test(number);
+  };
+
+  const validateCVV = (cvv) => {
+    const regex = /^\d{3,4}$/;
+    return regex.test(cvv);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 直接将已更新的 order 对象传递给下一个页面
-    navigate("/purchase/shippingEntry", { state: { order: order} });
-    console.log("order: ", order);
+    if (!validateCreditCardNumber(order.credit_card_number)) {
+      setError("Invalid Credit Card Number");
+    } else if (!validateCVV(order.cvCode)) {
+      setError("Invalid CVV Code");
+    } else {
+      navigate("/purchase/shippingEntry", { state: { order: order } });
+      console.log("order: ", order);
+    }
   };
 
   return (
     <div>
       <h1>Payment Entry</h1>
+      {error && <div style={{ color: "red" }}>{error}</div>}
       Product 1: {order.buyQuantity[0]}
       <br />
       Product 2: {order.buyQuantity[1]}
