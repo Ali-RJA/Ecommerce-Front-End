@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import NavBar from './Navbar';
 
 const PaymentEntry = () => {
   const location = useLocation();
@@ -45,6 +46,12 @@ const PaymentEntry = () => {
       Product 1: {order.buyQuantity[0]}
       <br />
       Product 2: {order.buyQuantity[1]}
+      <br />
+      Product 3: {order.buyQuantity[2]}
+      <br />
+      Product 4: {order.buyQuantity[3]}
+      <br />
+      Product 5: {order.buyQuantity[4]}
       <form onSubmit={handleSubmit}>
         <label>
           Card Number:

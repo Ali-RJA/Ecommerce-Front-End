@@ -1,0 +1,8 @@
+.footer {
+    position: relative;  /* Changed from fixed to relative */
+    width: 100%;         /* Ensures it spans the full width of the parent container */
+    height: auto;        /* Let content determine the height, but you can set a specific value if preferred */
+    background-color: #1f5156;  /* Just an example color, change as needed */
+    padding: 20px 0;    /* Gives some space for the footer content */
+    clear: both;        /* To clear any floated content */
+}

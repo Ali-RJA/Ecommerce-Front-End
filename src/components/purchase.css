@@ -1,0 +1,45 @@
+.payment {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .label_class{
+    width: 80px;
+    display: block; 
+  }
+  .input{
+    width: 50px;
+    display: block;
+  }
+  .label {
+    width: 120px;
+    position: fixed;
+    left: 10px;
+    text-align: center;
+    margin: 10px 0;
+    display: block;
+  }
+  .h2 {
+    font-size: 20px;
+    color: #f1356d;
+    margin-bottom: 30px;
+  }
+  .input, .create textarea, .create select {
+    width: 100%;
+    padding: 5px 10px;
+    position: 'absolute';
+    left: 50px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    display: block;
+  }
+  .button {
+    background: #f1356d;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+  }

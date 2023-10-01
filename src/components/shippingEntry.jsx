@@ -1,5 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import NavBar from './Navbar';
+
 const ShippingEntry = () => {
     const location = useLocation();
     const navigate = useNavigate();
