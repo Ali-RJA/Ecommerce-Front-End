@@ -7,15 +7,21 @@ const ShippingEntry = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        const regex = /^\d{16}$/;
+        if (regex.test(value)) {
+            console.log("The string contains a 16-digit number.");
+        } else {
+            console.log("The string doesn't match the criteria.");
+        }
         setOrder(prevOrder => ({
             ...prevOrder,
-            [name]: value  // 更新 order 对象的相应属性
+            [name]: value
         }));
     };
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // 直接将已更新的 order 对象传递给下一个页面
         navigate('/purchase/viewOrder', { state: { order: order} });
     };
 

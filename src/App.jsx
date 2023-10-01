@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-d
 import Purchase from './components/purchase';
 import PaymentEntry from './components/paymentEntry';
 import ShippingEntry from './components/shippingEntry';
-import ViewOrder from './components/viewOrder';  // 注意大小写
+import ViewOrder from './components/viewOrder';
 import ViewConfirmation from './components/viewConfirmation';  // 注意大小写
 
 function App() {
