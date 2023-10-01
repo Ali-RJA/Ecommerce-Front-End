@@ -1,3 +1,4 @@
+import NavBar from './Navbar';
 
 const ViewConfirmation = () => {
     const confirmationNumber = "ABC123XYZ";  // Hardcoded confirmation number

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NavBar from './Navbar';
 
 const Purchase = () => {
   const [order, setOrder] = useState({
@@ -24,7 +25,9 @@ const Purchase = () => {
   };
 
   return (
-    <div>
+    
+    
+    <div> 
       <form onSubmit={handleSubmit}>
         <label>Product 1</label>
         <input
@@ -44,6 +47,39 @@ const Purchase = () => {
           onChange={(e) => {
             const newBuyQuantity = [...order.buyQuantity];
             newBuyQuantity[1] = e.target.value;
+            setOrder({ ...order, buyQuantity: newBuyQuantity });
+          }}
+        />
+        <br/>
+        <label>Product 3</label>
+        <input
+          type="number"
+          required
+          onChange={(e) => {
+            const newBuyQuantity = [...order.buyQuantity];
+            newBuyQuantity[2] = e.target.value;
+            setOrder({ ...order, buyQuantity: newBuyQuantity });
+          }}
+        />
+        <br/>
+        <label>Product 4</label>
+        <input
+          type="number"
+          required
+          onChange={(e) => {
+            const newBuyQuantity = [...order.buyQuantity];
+            newBuyQuantity[3] = e.target.value;
+            setOrder({ ...order, buyQuantity: newBuyQuantity });
+          }}
+        />
+        <br/>
+        <label>Product 5</label>
+        <input
+          type="number"
+          required
+          onChange={(e) => {
+            const newBuyQuantity = [...order.buyQuantity];
+            newBuyQuantity[4] = e.target.value;
             setOrder({ ...order, buyQuantity: newBuyQuantity });
           }}
         />

@@ -1,4 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import NavBar from './Navbar';
+import SampleFooter from './footer';
 
 const ViewOrder = () => {
     const location = useLocation();
