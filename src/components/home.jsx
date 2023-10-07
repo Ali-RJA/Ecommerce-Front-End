@@ -1,12 +1,14 @@
 import React from "react";
 import './home.css';
+import logo from '../assets/logo.png';
+
 
 const Home = () => {
   return (
     <div className="home-container">
-      <img src="/path_to_your_logo.png" alt="Urban Threads Logo" className="home-logo" />
+      <img src={logo} alt="Your Logo" className="logo"/>
 
-      <h1>Urban Threads: Crafting Elegance</h1>
+      <h1>Urban Threads</h1>
       
       <h2>Our Ethos</h2>
       <p>Founded on the principles of excellence and elegance, Urban Threads is more than just a brand - it’s a lifestyle. In the ever-evolving world of fashion, we stand as the epitome of sophistication and cutting-edge style. With an unyielding commitment to quality and innovation, we merge global trends with local flavors, creating an unrivaled blend of uniqueness.</p>

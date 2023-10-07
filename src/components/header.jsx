@@ -1,6 +1,8 @@
 // Header.jsx
 import React from "react";
 import './Header.css';
+import logo from '../assets/logo.png';
+
 
 const Header = () => {
     const handleSearch = () => {
@@ -12,7 +14,7 @@ const Header = () => {
     return (
         <header className="header">
             <div className="logo-section">
-                <img src="/path-to-your-logo.png" alt="Your Logo" className="logo"/>
+                <img src={logo} alt="Your Logo" className="logo"/>
             </div>
             <div className="search-and-login">
             <div className="search-container">
