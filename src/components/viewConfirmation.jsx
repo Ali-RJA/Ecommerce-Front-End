@@ -1,4 +1,5 @@
 import NavBar from './Navbar';
+import SampleFooter from './footer';
 
 const ViewConfirmation = () => {
     const confirmationNumber = "ABC123XYZ";  // Hardcoded confirmation number

@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import NavBar from './Navbar';
+import SampleFooter from './footer';
 
 const ShippingEntry = () => {
     const location = useLocation();
