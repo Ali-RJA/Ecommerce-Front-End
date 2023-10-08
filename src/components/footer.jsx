@@ -1,29 +1,47 @@
-
 import Footer from 'rc-footer';
 import 'rc-footer/assets/index.css'; // import 'rc-footer/asssets/index.less';
 import './footer.css'
 
 const SampleFooter = () => ( 
-  
   <Footer  className='footer'
   onClick
   autoFocus
   columns={[
     {
-      title: 'contact us',
+      title: 'Client Service',
       items: [
         {
-          title: 'adress',
+          title: 'FAQs',
           url: 'https://ceo/',
           openExternal: true,
         },
         {
-          title: 'email',
+          title: 'Track Order',
           url: 'https://ceo/',
           openExternal: true,
         },
         {
-          title: 'phone',
+          title: 'Returns',
+          url: 'https://ceo/',
+          openExternal: true,
+        },
+      ],
+    },
+    {
+      title: 'Contact Us',
+      items: [
+        {
+          title: 'Adress',
+          url: 'https://ceo/',
+          openExternal: true,
+        },
+        {
+          title: 'Email',
+          url: 'https://ceo/',
+          openExternal: true,
+        },
+        {
+          title: 'Phone',
           url: 'https://ceo/',
           openExternal: true,
         },
@@ -65,9 +83,15 @@ const SampleFooter = () => (
       ],
     },
   ]}
+  
 />
 
 );
 
 
 export default () => <SampleFooter />;
+
+
+
+
+
