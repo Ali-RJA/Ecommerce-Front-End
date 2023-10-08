@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Purchase from './components/purchase';
 import PaymentEntry from './components/paymentEntry';
 import ShippingEntry from './components/shippingEntry';
@@ -7,10 +7,13 @@ import ViewOrder from './components/viewOrder';
 import ViewConfirmation from './components/viewConfirmation';  // 注意大小写
 import NavBar from './components/Navbar';
 import About from './components/about';
+import Contact from './components/Contact';
 import Cart from './components/cart';
 import SampleFooter from './components/footer';
 import Home from './components/home';
 import Header from './components/header';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {
@@ -28,6 +31,7 @@ function App() {
                         <Route path="/purchase/viewOrder" element={<ViewOrder />} />
                         <Route path="/purchase/viewConfirmation" element={<ViewConfirmation />} />
                         <Route path="/about" element={<About />} />
+                        <Route path="/contact" element={<Contact />} />
                         <Route path="/cart" element={<Cart />} />
                     </Routes>
                 </div>

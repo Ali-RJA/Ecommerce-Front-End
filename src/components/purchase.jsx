@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBar from './Navbar';
 
 const Purchase = () => {
   const [order, setOrder] = useState({
@@ -25,9 +24,9 @@ const Purchase = () => {
   };
 
   return (
-    
-    
-    <div> 
+
+
+    <div>
       <form onSubmit={handleSubmit}>
         <label>Product 1</label>
         <input

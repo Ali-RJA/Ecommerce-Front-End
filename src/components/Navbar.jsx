@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
@@ -36,6 +36,17 @@ function NavBar() {
                 onClick={handleClick}
               >
                 About
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                exact
+                to="/contact"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Contact Us
               </NavLink>
             </li>
             <li className="nav-item">
