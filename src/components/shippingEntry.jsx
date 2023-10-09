@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import NavBar from './Navbar';
 import SampleFooter from './footer';
+import './Contact.css';
 
 const ShippingEntry = () => {
     const location = useLocation();
@@ -29,8 +30,7 @@ const ShippingEntry = () => {
     };
 
     return (
-        <div>
-            <h2>Shipping Information</h2>
+        <div className="container bg-beige">
             <form onSubmit={handleSubmit}>
                 <label>
                     Name:
@@ -62,7 +62,7 @@ const ShippingEntry = () => {
                     <input type="text" name="zip" value={order.zip} onChange={handleChange} required />
                 </label>
                 <br />
-                <button type="submit">Continue to View Order</button>
+                <button type="submit" className="custom-btn">Continue to View Order</button>
             </form>
         </div>
     );

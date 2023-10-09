@@ -3,8 +3,8 @@ import logo from "../assets/logo.png";
 
 const Home = () => {
   return (
-    <div className="home-container container mt-5 bg-beige">
-      <img src={logo} alt="Logo" className="logo img-thumbnail w-40 mb-5" />
+    <div className="home-container container bg-beige">
+      <img src={logo} alt="Logo" className="logo img-thumbnail w-40 mb-7" />
 
       <h1 className="display-3 text-center mb-4">Urban Threads</h1>
 

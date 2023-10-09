@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Contact.css';
 const Contact = () => {
   return (
-    <div className="container bg-beige mt-5">
+    <div className="container bg-beige">
       <h1 className="mb-4">Contact Us</h1>
 
       <p className="mb-4">Have questions or feedback? Reach out to us through the form below:</p>

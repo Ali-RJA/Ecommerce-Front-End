@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import NavBar from './Navbar';
 import SampleFooter from './footer';
+import './Contact.css';
 
 const PaymentEntry = () => {
   const location = useLocation();
@@ -41,8 +42,7 @@ const PaymentEntry = () => {
   };
 
   return (
-    <div>
-      <h1>Payment Entry</h1>
+    <div className="container bg-beige">
       {error && <div style={{ color: "red" }}>{error}</div>}
       Product 1: {order.buyQuantity[0]}
       <br />
@@ -98,7 +98,7 @@ const PaymentEntry = () => {
           />
         </label>
         <br />
-        <button type="submit">Continue to Shipping Information</button>
+        <button type="submit" className="custom-btn">Continue to Shipping Information</button>
       </form>
     </div>
   );

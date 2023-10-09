@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from './Navbar';
 import SampleFooter from './footer';
+import './Contact.css';
 
 const ViewOrder = () => {
     const location = useLocation();
@@ -18,7 +19,7 @@ const ViewOrder = () => {
     };
 
     return (
-        <div>
+        <div className="container bg-beige">
             <h2>Order Details</h2>
             <h3>Items Ordered:</h3>
             <ul>
@@ -34,7 +35,7 @@ const ViewOrder = () => {
             <p>Address 1: {order.address1}</p>
             <p>Address 2: {order.address2}</p>
             <form onSubmit={handleSubmit}>
-                <button type="submit">Next Page</button>
+                <button type="submit" className="custom-btn">Next Page</button>
             </form>
         </div>
     );
