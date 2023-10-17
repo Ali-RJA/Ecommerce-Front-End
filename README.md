@@ -1,5 +1,13 @@
 # React + Vite
 
+Ruoke:
+1. Please create a new account in phpMyAdmin
+![Alt text](image.png), the password is 123456, grant it with all the priviledges.
+
+2. When start the server, run "node server/server.js", instead of "node server.js"
+
+3. Go to http://localhost:8080/get_item to see the result. (Not port 7000)
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
