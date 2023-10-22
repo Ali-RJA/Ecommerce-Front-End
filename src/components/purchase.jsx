@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Contact.css";
+
+
+
+
+
 
 const Purchase = () => {
   const [order, setOrder] = useState({
@@ -16,7 +21,23 @@ const Purchase = () => {
     zip: "",
   });
 
+  
+  const[item, setItem] = useState({
+      // create item with same fields as backend rest controller
+      // useState(item) update here
+  });
+
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+     // Call rest controller api ttp://localhost:8080/urban-threads/items
+  
+    return () => {
+  
+    };
+  },[])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +45,7 @@ const Purchase = () => {
     console.log("order: ", order);
   };
 
+  // edit this so you run a loop that print html displaying all items
   return (
     <div className="container bg-beige">
       <form onSubmit={handleSubmit}>
