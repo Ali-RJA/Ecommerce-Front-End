@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Contact.css";
-
-
-
-
-
+import "./purchase.css";
 
 const Purchase = () => {
   const [order, setOrder] = useState({
@@ -25,13 +20,25 @@ const Purchase = () => {
   const[item, setItem] = useState({
       // create item with same fields as backend rest controller
       // useState(item) update here
+      id: null,
+      itemName: "",
+      description: "",
+      price: null,
+      stockQuantity: null,
+      category: ""
   });
 
   const navigate = useNavigate();
 
 
   useEffect(() => {
-     // Call rest controller api ttp://localhost:8080/urban-threads/items
+     // Call rest controller api http://localhost:8080/urban-threads/items
+     fetch("http://localhost:8080/urban-threads/items")
+     .then(response => response.json())
+     .then(data => {
+         setItem(data);
+         setOrder(prevOrder => ({ ...prevOrder, buyQuantity: new Array(data.length).fill(0) }));
+     });
   
     return () => {
   
@@ -47,102 +54,30 @@ const Purchase = () => {
 
   // edit this so you run a loop that print html displaying all items
   return (
+  
     <div className="container bg-beige">
       <form onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="col-md-4">
-            <img
-              src="src\assets\tshirt1.jpg"
-              alt="T shirt Image"
-              className="img-fluid mb-2"
-            />
-            <label>Purple T-shirt</label>
-            <input
-              type="number"
-              required
-              onChange={(e) => {
-                const newBuyQuantity = [...order.buyQuantity];
-                newBuyQuantity[0] = e.target.value;
-                setOrder({ ...order, buyQuantity: newBuyQuantity });
-              }}
-            />
-          </div>
-
-          <div className="col-md-4">
-            <img
-              src="src\assets\tshirt2.jpg"
-              alt="T-shirt Image"
-              className="img-fluid mb-2"
-            />
-            <label>White T-shirt</label>
-            <input
-              type="number"
-              required
-              onChange={(e) => {
-                const newBuyQuantity = [...order.buyQuantity];
-                newBuyQuantity[1] = e.target.value;
-                setOrder({ ...order, buyQuantity: newBuyQuantity });
-              }}
-            />
-          </div>
-
-          <div className="col-md-4">
-            <img
-              src="src\assets\tshirt3.jpg"
-              alt="Tshirt Image"
-              className="img-fluid mb-2"
-            />
-            <label>Pink T-shirt</label>
-            <input
-              type="number"
-              required
-              onChange={(e) => {
-                const newBuyQuantity = [...order.buyQuantity];
-                newBuyQuantity[2] = e.target.value;
-                setOrder({ ...order, buyQuantity: newBuyQuantity });
-              }}
-            />
-          </div>
+      <div className="row">
+          {items.map((item, index) => (
+            <div className="col-md-4" key={item.id}>
+              <img
+                src={item.image}  // Assuming your item object has an image property
+                alt={item.itemName}
+                className="img-fluid mb-2"
+              />
+              <label>{item.itemName}</label>
+              <input
+                type="number"
+                required
+                onChange={(e) => {
+                  const newBuyQuantity = [...order.buyQuantity];
+                  newBuyQuantity[index] = e.target.value;
+                  setOrder({ ...order, buyQuantity: newBuyQuantity });
+                }}
+              />
+            </div>
+          ))}
         </div>
-
-        <div className="row mt-4">
-          <div className="col-md-4">
-            <img
-              src="src\assets\tshirt4.jpg"
-              alt="T-shirt Image"
-              className="img-fluid mb-2"
-            />
-            <label>Orange T-shirt</label>
-            <input
-              type="number"
-              required
-              onChange={(e) => {
-                const newBuyQuantity = [...order.buyQuantity];
-                newBuyQuantity[3] = e.target.value;
-                setOrder({ ...order, buyQuantity: newBuyQuantity });
-              }}
-            />
-          </div>
-
-          <div className="col-md-4">
-            <img
-              src="src\assets\tshirt5.jpg"
-              alt="T-shirt Image"
-              className="img-fluid mb-2"
-            />
-            <label>Gret T-shirt</label>
-            <input
-              type="number"
-              required
-              onChange={(e) => {
-                const newBuyQuantity = [...order.buyQuantity];
-                newBuyQuantity[4] = e.target.value;
-                setOrder({ ...order, buyQuantity: newBuyQuantity });
-              }}
-            />
-          </div>
-        </div>
-
         <button type="submit" className="custom-btn mt-4">
           Submit
         </button>
