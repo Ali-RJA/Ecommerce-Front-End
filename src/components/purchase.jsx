@@ -17,7 +17,7 @@ const Purchase = () => {
   });
 
   
-  const[item, setItem] = useState({
+  const[items, setItems] = useState([{
       // create item with same fields as backend rest controller
       // useState(item) update here
       id: null,
@@ -26,17 +26,17 @@ const Purchase = () => {
       price: null,
       stockQuantity: null,
       category: ""
-  });
+  }]);
 
   const navigate = useNavigate();
 
 
   useEffect(() => {
      // Call rest controller api http://localhost:8080/urban-threads/items
-     fetch("http://localhost:8080/urban-threads/items")
+     fetch("https://89269749-088a-4bfa-9e44-fea6cc0f98f0.mock.pstmn.io/getallitems")
      .then(response => response.json())
      .then(data => {
-         setItem(data);
+         setItems(data);
          setOrder(prevOrder => ({ ...prevOrder, buyQuantity: new Array(data.length).fill(0) }));
      });
   
@@ -61,7 +61,7 @@ const Purchase = () => {
           {items.map((item, index) => (
             <div className="col-md-4" key={item.id}>
               <img
-                src={item.image}  // Assuming your item object has an image property
+                src="src\assets\tshirt5.jpg"  // Assuming your item object has an image property
                 alt={item.itemName}
                 className="img-fluid mb-2"
               />
