@@ -4,7 +4,7 @@ import "./purchase.css";
 
 const Purchase = () => {
   const [order, setOrder] = useState({
-    buyQuantity: [0, 0, 0, 0, 0],
+    buyQuantity: [],
     credit_card_number: "",
     card_holder_name: "",
     address1: "",
@@ -16,35 +16,26 @@ const Purchase = () => {
     zip: "",
   });
 
-  
-  const[items, setItems] = useState([{
-      // create item with same fields as backend rest controller
-      // useState(item) update here
-      id: null,
-      itemName: "",
-      description: "",
-      price: null,
-      stockQuantity: null,
-      category: ""
-  }]);
+  const [items, setItems] = useState([]);
 
   const navigate = useNavigate();
 
-
   useEffect(() => {
-     // Call rest controller api http://localhost:8080/urban-threads/items
-     fetch("https://89269749-088a-4bfa-9e44-fea6cc0f98f0.mock.pstmn.io/getallitems")
-     .then(response => response.json())
-     .then(data => {
-         setItems(data);
-         setOrder(prevOrder => ({ ...prevOrder, buyQuantity: new Array(data.length).fill(0) }));
-     });
-  
-    return () => {
-  
-    };
-  },[])
+    fetch("http://localhost:8080/urban-threads/items?pageNumber=0&sizeOfPage=10")
+      .then(response => response.json())
+      .then(data => {
+        // Assuming that the items are in the `content` array of the pageable JSON response
+        const itemList = data.content || [];
+        setItems(itemList);
+        setOrder(prevOrder => ({
+          ...prevOrder,
+          // Set the buyQuantity array length to match the number of items
+          buyQuantity: new Array(itemList.length).fill(0),
+        }));
+      });
 
+    // Clean-up function not needed if you're not setting up any subscriptions or timers
+  }, []); // Dependency array is empty, meaning this effect runs once on mount
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,26 +43,31 @@ const Purchase = () => {
     console.log("order: ", order);
   };
 
-  // edit this so you run a loop that print html displaying all items
   return (
-  
     <div className="container bg-beige">
       <form onSubmit={handleSubmit}>
-      <div className="row">
+        <div className="row">
           {items.map((item, index) => (
             <div className="col-md-4" key={item.id}>
               <img
-                src="src\assets\tshirt5.jpg"  // Assuming your item object has an image property
+                // Use the first image from the images array, if available
+                src={item.images?.[0] || "src/assets/placeholder.jpg"} // replace with placeholder if no image is available
                 alt={item.itemName}
                 className="img-fluid mb-2"
               />
-              <label>{item.itemName}</label>
+              <h5>{item.itemName}</h5>
+              <p>{item.description}</p>
+              <p>Price: ${item.price}</p>
+              <p>Stock: {item.stockQuantity}</p>
               <input
                 type="number"
+                min="0"
+                max={item.stockQuantity}
                 required
+                value={order.buyQuantity[index]}
                 onChange={(e) => {
                   const newBuyQuantity = [...order.buyQuantity];
-                  newBuyQuantity[index] = e.target.value;
+                  newBuyQuantity[index] = parseInt(e.target.value, 10);
                   setOrder({ ...order, buyQuantity: newBuyQuantity });
                 }}
               />
