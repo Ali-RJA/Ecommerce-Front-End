@@ -48,12 +48,12 @@ const Purchase = () => {
       <form onSubmit={handleSubmit}>
         <div className="row">
           {items.map((item, index) => (
-            <div className="col-md-4" key={item.id}>
+            <div className="product-item col-md-4" key={item.id}>
               <img
                 // Use the first image from the images array, if available
                 src={item.images?.[0] || "src/assets/placeholder.jpg"} // replace with placeholder if no image is available
                 alt={item.itemName}
-                className="img-fluid mb-2"
+                className="img-fluid"
               />
               <h5>{item.itemName}</h5>
               <p>{item.description}</p>
