@@ -13,6 +13,7 @@ import SampleFooter from './components/footer';
 import Home from './components/home';
 import Header from './components/header';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AddItem from './components/AddItem';
 
 
 
@@ -33,6 +34,7 @@ function App() {
                         <Route path="/about" element={<About />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/cart" element={<Cart />} />
+                        <Route path="/addItem" element={<AddItem />} />
                     </Routes>
                 </div>
             </Router>
