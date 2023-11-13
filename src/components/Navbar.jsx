@@ -71,6 +71,17 @@ function NavBar() {
                 Shopping Cart
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink
+                exact
+                to="/AddItem"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Add Item
+              </NavLink>
+            </li>
           </ul>
           <div className="nav-icon" onClick={handleClick}>
             <i className={click ? "fas fa-times" : "fas fa-bars"}></i>

@@ -6,27 +6,61 @@ const AddItem = () => {
     price: "",
     category: "",
     description: "",
-    stockQuantity: "",
-    images: [], // this will be an array of image file references
-  });
+    stockQuantity: ""
+    });
   const [uploadSuccess, setUploadSuccess] = useState(false);
-
+  const [fileMap, setFileMap] = useState(new Map()); // [fileName, file
   const handleImageUpload = (e) => {
-    setItem({ ...item, images: [...e.target.files] });
+    const newFileMap = new Map();
+    const filesArray = Array.from(e.target.files);
+  
+    filesArray.forEach(file => {
+      // Use 'file', not 'image'
+      newFileMap.set(file.name.replace(/\.[^/.]+$/, ""), file);
+    });
+  
+    setFileMap(newFileMap);
+  
+    
+  };
+  const uploadFileToS3 = async (file, presignedUrl) => {
+    try {
+      const response = await fetch(presignedUrl, {
+        method: 'PUT',
+        body: file,
+        headers: {
+          'Content-Type': file.type,
+        },
+      });
+  
+      if (response.status === 200) {
+        console.log('File uploaded successfully');
+        return true;
+      } else {
+        console.error('File upload failed:', response.statusText);
+        return false;
+      }
+    } catch (error) {
+      console.error('Error uploading file to S3:', error);
+      return false;
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    let imagesMap = new Map();
+    fileMap.forEach((fileName, file) => {
+      imagesMap.set(file, "");
+    });
     const itemData = {
         itemName: item.itemName,
         price: item.price,
         category: item.category,
         description: item.description,
         stockQuantity: item.stockQuantity,
-        images: item.images.map(image => image.name.replace(/\.[^/.]+$/, ""))
+        images: Object.fromEntries(imagesMap)
     };
-
+    console.log(itemData);
 
     try {
       const response = await fetch("http://localhost:8080/urban-threads/items/add", {
@@ -36,6 +70,7 @@ const AddItem = () => {
         },
         body: JSON.stringify(itemData),
       });
+      console.log(JSON.stringify(itemData));
 
       if (!response.ok) {
         throw new Error("Server responded with an error!");
@@ -43,14 +78,23 @@ const AddItem = () => {
 
       const responseData = await response.json();
       console.log(responseData);
-      // Set uploadSuccess to true when the response is successful
-      setUploadSuccess(true);
+      Object.entries(responseData.images).forEach(([key, value]) => {
+        const file = fileMap.get(key);
+        const success = uploadFileToS3(file, value);
+        if (success) {
+          setUploadSuccess(true);
+        }
+        else {
+          setUploadSuccess(false);
+        }
+
+      });
+
     } catch (error) {
       console.error("Error submitting form:", error);
-      // Set uploadSuccess to false in case of an error
-      setUploadSuccess(false);
     }
-    //TODO: add images to S3 bucket (if needed).
+
+
   };
 
   return (

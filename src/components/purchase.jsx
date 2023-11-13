@@ -21,7 +21,7 @@ const Purchase = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:8080/urban-threads/items?pageNumber=0&sizeOfPage=10")
+    fetch("http://localhost:8080/urban-threads/items?pageNumber=0&sizeOfPage=100")
       .then(response => response.json())
       .then(data => {
         // Assuming that the items are in the `content` array of the pageable JSON response
