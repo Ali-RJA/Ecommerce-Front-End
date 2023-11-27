@@ -5,67 +5,100 @@ import SampleFooter from './footer';
 import './Contact.css';
 
 const ShippingEntry = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-    const [order, setOrder] = useState(location.state.order);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [orderDTO, setOrderDTO] = useState(location.state?.orderDTO);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        const regex = /^\d{16}$/;
-        if (regex.test(value)) {
-            console.log("The string contains a 16-digit number.");
-        } else {
-            console.log("The string doesn't match the criteria.");
-        }
-        setOrder(prevOrder => ({
-            ...prevOrder,
-            [name]: value
-        }));
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setOrderDTO((prevOrderDTO) => ({
+      ...prevOrderDTO,
+      [name]: value,
+    }));
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate('/purchase/viewOrder', { state: { orderDTO } });
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        navigate('/purchase/viewOrder', { state: { order: order} });
-    };
-
-    return (
-        <div className="container bg-beige">
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Name:
-                    <input type="text" name="card_holder_name" value={order.card_holder_name} onChange={handleChange} required />
-                </label>
-                <br />
-                <label>
-                    Address Line 1:
-                    <input type="text" name="address1" value={order.address1} onChange={handleChange} required />
-                </label>
-                <br />
-                <label>
-                    Address Line 2:
-                    <input type="text" name="address2" value={order.address2} onChange={handleChange} />
-                </label>
-                <br />
-                <label>
-                    City:
-                    <input type="text" name="city" value={order.city} onChange={handleChange} required />
-                </label>
-                <br />
-                <label>
-                    State:
-                    <input type="text" name="state" value={order.state} onChange={handleChange} required />
-                </label>
-                <br />
-                <label>
-                    Zip:
-                    <input type="text" name="zip" value={order.zip} onChange={handleChange} required />
-                </label>
-                <br />
-                <button type="submit" className="custom-btn">Continue to View Order</button>
-            </form>
-        </div>
-    );
+  return (
+    <div className="container bg-beige">
+      <NavBar />
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input
+            type="text"
+            name="card_holder_name"
+            value={orderDTO.card_holder_name}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Address Line 1:
+          <input
+            type="text"
+            name="address1"
+            value={orderDTO.address1}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Address Line 2:
+          <input
+            type="text"
+            name="address2"
+            value={orderDTO.address2}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <label>
+          City:
+          <input
+            type="text"
+            name="city"
+            value={orderDTO.city}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          State:
+          <input
+            type="text"
+            name="state"
+            value={orderDTO.state}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Zip:
+          <input
+            type="text"
+            name="zip"
+            value={orderDTO.zip}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <br />
+        <button type="submit" className="custom-btn">
+          Continue to View Order
+        </button>
+      </form>
+      <SampleFooter />
+    </div>
+  );
 };
 
 export default ShippingEntry;
+

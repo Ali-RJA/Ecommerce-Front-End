@@ -7,16 +7,15 @@ import './Contact.css';
 const PaymentEntry = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [order, setOrder] = useState(location.state.order);
+  const [orderDTO, setOrderDTO] = useState(location.state?.orderDTO || {});
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setOrder((prevOrder) => ({
-      ...prevOrder,
+    setOrderDTO(prevOrderDTO => ({
+      ...prevOrderDTO,
       [name]: value,
     }));
-    setError("");
   };
 
   const validateCreditCardNumber = (number) => {
@@ -31,35 +30,42 @@ const PaymentEntry = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validateCreditCardNumber(order.credit_card_number)) {
+    if (!validateCreditCardNumber(orderDTO.credit_card_number)) {
       setError("Invalid Credit Card Number");
-    } else if (!validateCVV(order.cvCode)) {
+      return;
+    }
+    if (!validateCVV(orderDTO.cvCode)) {
       setError("Invalid CVV Code");
-    } else {
-      navigate("/purchase/shippingEntry", { state: { order: order } });
-      console.log("order: ", order);
+      return;
+    }
+    navigate("/purchase/shippingEntry", { state: { orderDTO } });
+  };
+
+  // Error handling for accessing properties of orderDTO directly
+  const getSafe = (fn, defaultValue) => {
+    try {
+      return fn();
+    } catch (e) {
+      return defaultValue;
     }
   };
 
   return (
     <div className="container bg-beige">
+      <NavBar />
       {error && <div style={{ color: "red" }}>{error}</div>}
-      Product 1: {order.buyQuantity[0]}
-      <br />
-      Product 2: {order.buyQuantity[1]}
-      <br />
-      Product 3: {order.buyQuantity[2]}
-      <br />
-      Product 4: {order.buyQuantity[3]}
-      <br />
-      Product 5: {order.buyQuantity[4]}
+      <div>Product 1: {getSafe(() => orderDTO.buyQuantity[0], 0)}</div>
+      <div>Product 2: {getSafe(() => orderDTO.buyQuantity[1], 0)}</div>
+      <div>Product 3: {getSafe(() => orderDTO.buyQuantity[2], 0)}</div>
+      <div>Product 4: {getSafe(() => orderDTO.buyQuantity[3], 0)}</div>
+      <div>Product 5: {getSafe(() => orderDTO.buyQuantity[4], 0)}</div>
       <form onSubmit={handleSubmit}>
         <label>
           Card Number:
           <input
             type="number"
             name="credit_card_number"
-            value={order.credit_card_number}
+            value={getSafe(() => orderDTO.credit_card_number, "")}
             onChange={handleChange}
             required
           />
@@ -70,7 +76,7 @@ const PaymentEntry = () => {
           <input
             type="text"
             name="expir_date"
-            value={order.expir_date}
+            value={getSafe(() => orderDTO.expir_date, "")}
             onChange={handleChange}
             required
           />
@@ -81,7 +87,7 @@ const PaymentEntry = () => {
           <input
             type="number"
             name="cvCode"
-            value={order.cvCode}
+            value={getSafe(() => orderDTO.cvCode, "")}
             onChange={handleChange}
             required
           />
@@ -92,7 +98,7 @@ const PaymentEntry = () => {
           <input
             type="text"
             name="card_holder_name"
-            value={order.card_holder_name}
+            value={getSafe(() => orderDTO.card_holder_name, "")}
             onChange={handleChange}
             required
           />
@@ -100,6 +106,7 @@ const PaymentEntry = () => {
         <br />
         <button type="submit" className="custom-btn">Continue to Shipping Information</button>
       </form>
+      <SampleFooter />
     </div>
   );
 };
