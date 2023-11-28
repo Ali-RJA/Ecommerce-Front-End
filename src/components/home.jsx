@@ -10,52 +10,41 @@ const Home = () => {
 
       <div className="row">
         <div className="col-12">
-          <h2 className="display-6 mb-3">Our Ethos</h2>
+          <h2 className="display-6 mb-3">Discover Your Style</h2>
           <p className="lead mb-5">
-            Founded on the principles of excellence and elegance, Urban Threads
-            is more than just a brand - it’s a lifestyle. In the ever-evolving
-            world of fashion, we stand as the epitome of sophistication and
-            cutting-edge style. With an unyielding commitment to quality and
-            innovation, we merge global trends with local flavors, creating an
-            unrivaled blend of uniqueness.
+            At Urban Threads, we celebrate the diversity of fashion. Our expansive collection ranges from the avant-garde to the classic, offering something for every wardrobe. Discover attire that speaks to your personality and elevates your style.
           </p>
         </div>
 
         <div className="col-12">
-          <h2 className="display-6 mb-3">The Urban Threads Difference</h2>
+          <h2 className="display-6 mb-3">Quality Meets Variety</h2>
           <p className="lead mb-5">
-            Every piece at Urban Threads is meticulously crafted, bearing in
-            mind the diverse sartorial preferences of our discerning clientele.
-            Our designs are timeless, transcending fleeting trends and radiating
-            a charm that's both vintage and contemporary. We understand that
-            fashion is an extension of one's personality, and our collection
-            resonates with this ethos, offering something special for every
-            individual.
+            Dive into a world where quality meets variety. Each item in our collection is chosen for its craftsmanship, durability, and style. We provide a wide range of clothing options, from luxurious designer wear to affordable everyday essentials.
           </p>
         </div>
 
         <div className="col-12">
-          <h2 className="display-6 mb-3">Sustainability: A Stitch At A Time</h2>
+          <h2 className="display-6 mb-3">Sustainable Fashion for the Future</h2>
           <p className="lead mb-5">
-            In an era where sustainability is more than a buzzword, we're at the
-            forefront of eco-conscious fashion. We believe in the power of
-            sustainable and ethically sourced materials, ensuring a lesser
-            environmental footprint without compromising on quality.
+            Join us in our commitment to sustainability. At Urban Threads, we prioritize eco-friendly materials and ethical manufacturing processes, ensuring that your fashion choices contribute to a healthier planet.
           </p>
         </div>
 
         <div className="col-12">
-          <h2 className="display-6 mb-3">A Message From The Heart</h2>
+          <h2 className="display-6 mb-3">Exclusive Online Experiences</h2>
           <p className="lead mb-5">
-            To our esteemed clientele - your faith in Urban Threads empowers us.
-            As we journey together in the world of fashion, know that our
-            commitment to you is unwavering. We promise to continue pushing the
-            boundaries, delivering not just clothes, but a legacy of style.
+            Experience the convenience of online shopping with exclusive features. Enjoy personalized recommendations and a seamless checkout process. We bring the latest in fashion technology to your fingertips.
+          </p>
+        </div>
+
+        <div className="col-12">
+          <h2 className="display-6 mb-3">Fashion Forward, Customer Centered</h2>
+          <p className="lead mb-5">
+            Your satisfaction is our top priority. We offer exceptional customer service, hassle-free returns, and a community platform for fashion enthusiasts. At Urban Threads, every customer is a part of our fashion family.
           </p>
         </div>
       </div>
     </div>
   );
 };
-
 export default Home;

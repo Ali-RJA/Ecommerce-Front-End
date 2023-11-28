@@ -1,14 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
 import NavBar from './Navbar';
 import SampleFooter from './footer';
 import './Contact.css';
+import React, { useState, useEffect } from 'react';
+
 
 const PaymentEntry = () => {
-  const location = useLocation();
+  const [cartItems, setCartItems] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
   const [orderDTO, setOrderDTO] = useState(location.state?.orderDTO || {});
-  const [error, setError] = useState("");
+  const [error, setError] = useState(""); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +19,46 @@ const PaymentEntry = () => {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    const savedOrderDTO = JSON.parse(localStorage.getItem('orderDTO') || '{}');
+    if (savedOrderDTO && savedOrderDTO.itemsCountRequested) {
+      fetchCartItems();
+    }
+  }, []);
+  const fetchCartItems = () => {
+    fetch(`http://localhost:8080/urban-threads/items?pageNumber=0&sizeOfPage=100`)
+      .then(response => response.json())
+      .then(page => {
+        //console.log('API response:', page);
+        const itemsArray = page.content || [];
+        const savedOrderDTO = JSON.parse(localStorage.getItem('orderDTO') || '{}');
+        const itemsCountRequested = savedOrderDTO.itemsCountRequested || {};
+        const itemUnitPrices = savedOrderDTO.itemUnitPrices || {};
+
+        const itemsWithDetails = itemsArray
+        .filter(item => itemsCountRequested[item.id])
+        .map(item => {
+          const imageUrl = item.images && item.images.length > 0 ? item.images[0] :
+          console.log('Item images:', item.images);
+          console.log('Item quantity:', itemsCountRequested[item.id]);
+          return {
+            ...item,
+            quantity: itemsCountRequested[item.id],
+            price: itemUnitPrices[item.id] || item.price,
+            imageUrl,
+            name: item.itemName
+          };
+        });
+        setCartItems(itemsWithDetails);
+      })
+      .catch(error => {
+        console.error('Error fetching cart items:', error);
+      });
+  };
+
+
+
 
   const validateCreditCardNumber = (number) => {
     const regex = /^\d{16}$/;
@@ -30,42 +72,61 @@ const PaymentEntry = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validateCreditCardNumber(orderDTO.credit_card_number)) {
+    if (!validateCreditCardNumber(orderDTO.cardNumber)) {
       setError("Invalid Credit Card Number");
       return;
     }
-    if (!validateCVV(orderDTO.cvCode)) {
+    if (!validateCVV(orderDTO.cvv)) {
       setError("Invalid CVV Code");
       return;
     }
+    console.log('Saving to localStorage:', orderDTO);
+    localStorage.setItem('orderDTO', JSON.stringify(orderDTO));
+    
+    // 为了调试，检查保存后立即读取 localStorage
+    const debugOrderDTO = JSON.parse(localStorage.getItem('orderDTO'));
+    console.log('Saved in localStorage:', debugOrderDTO);
+    
     navigate("/purchase/shippingEntry", { state: { orderDTO } });
   };
 
+  
+
   // Error handling for accessing properties of orderDTO directly
+  /*
   const getSafe = (fn, defaultValue) => {
     try {
       return fn();
     } catch (e) {
       return defaultValue;
     }
-  };
+  };*/
 
   return (
     <div className="container bg-beige">
-      <NavBar />
       {error && <div style={{ color: "red" }}>{error}</div>}
-      <div>Product 1: {getSafe(() => orderDTO.buyQuantity[0], 0)}</div>
-      <div>Product 2: {getSafe(() => orderDTO.buyQuantity[1], 0)}</div>
-      <div>Product 3: {getSafe(() => orderDTO.buyQuantity[2], 0)}</div>
-      <div>Product 4: {getSafe(() => orderDTO.buyQuantity[3], 0)}</div>
-      <div>Product 5: {getSafe(() => orderDTO.buyQuantity[4], 0)}</div>
+      {cartItems.length > 0 ? (
+        cartItems.map(item => (
+          <div key={item.id} className="product-item">  {}
+            <img src={item.imageUrl} alt={item.itemName} className="img-fluid" />
+            <p>{item.itemName}</p>
+            <p>Price: ${item.price.toFixed(2)}</p>
+            <p>Quantity: {item.quantity}</p>
+          </div>
+        ))
+
+      ) : (
+        <div>No items in the cart</div>
+      )}
+
+      <h3>Payment Information:</h3>
       <form onSubmit={handleSubmit}>
         <label>
           Card Number:
           <input
             type="number"
-            name="credit_card_number"
-            value={getSafe(() => orderDTO.credit_card_number, "")}
+            name="cardNumber"
+            value={orderDTO.cardNumber} 
             onChange={handleChange}
             required
           />
@@ -75,8 +136,8 @@ const PaymentEntry = () => {
           Expiration Date:
           <input
             type="text"
-            name="expir_date"
-            value={getSafe(() => orderDTO.expir_date, "")}
+            name="expirationDate"
+            value={orderDTO.expirationDate} 
             onChange={handleChange}
             required
           />
@@ -86,8 +147,8 @@ const PaymentEntry = () => {
           CVV Code:
           <input
             type="number"
-            name="cvCode"
-            value={getSafe(() => orderDTO.cvCode, "")}
+            name="cvv"
+            value={orderDTO.cvv} 
             onChange={handleChange}
             required
           />
@@ -97,8 +158,8 @@ const PaymentEntry = () => {
           Card Holder Name:
           <input
             type="text"
-            name="card_holder_name"
-            value={getSafe(() => orderDTO.card_holder_name, "")}
+            name="cardHolderName"
+            value={orderDTO.cardHolderName} 
             onChange={handleChange}
             required
           />
@@ -106,9 +167,7 @@ const PaymentEntry = () => {
         <br />
         <button type="submit" className="custom-btn">Continue to Shipping Information</button>
       </form>
-      <SampleFooter />
     </div>
   );
 };
-
 export default PaymentEntry;

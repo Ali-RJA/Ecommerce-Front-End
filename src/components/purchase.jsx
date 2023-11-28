@@ -8,12 +8,12 @@ const Purchase = () => {
   street: "",
   city: "",
   state: "",
-  postalCode: "",
+  zip: "",
   country: "",
   firstName: "",
   lastName: "",
   email: "",
-  unitPrice: {}, // unit price
+  itemUnitPrices: {}, // unit price
   ccv: "",
   creditCardCompany: "",
   expirationDate: "",
@@ -25,29 +25,33 @@ const Purchase = () => {
 
   const navigate = useNavigate();
 
+
   useEffect(() => {
+    const savedOrderDTOJSON = localStorage.getItem('orderDTO');
+    const savedOrderDTO = savedOrderDTOJSON ? JSON.parse(savedOrderDTOJSON) : {};
+  
     fetch("http://localhost:8080/urban-threads/items?pageNumber=0&sizeOfPage=100")
       .then(response => response.json())
       .then(data => {
-        // Assuming that the items are in the `content` array of the pageable JSON response
         const itemList = data.content || [];
+  
+        const itemsCountRequested = savedOrderDTO.itemsCountRequested || itemList.reduce((acc, item) => {
+          acc[item.id] = 0;
+          return acc;
+        }, {});
+  
         setItems(itemList);
         setOrderDTO(prevDTO => ({
           ...prevDTO,
+          itemsCountRequested: itemsCountRequested,
           itemUnitPrices: itemList.reduce((acc, item) => {
             acc[item.id] = item.price;
             return acc;
-          }, {}),
-          itemsCountRequested: itemList.reduce((acc, item) => {
-            acc[item.id] = 0;
-            return acc;
-          }, {}),
+          }, {})
         }));
       });
-
-    // Clean-up function not needed if you're not setting up any subscriptions or timers
-  }, []); // Dependency array is empty, meaning this effect runs once on mount
-
+  }, []);
+  
   const handleQuantityChange = (itemId, quantity) => {
     setOrderDTO(prevDTO => {
       const newDTO = {
@@ -79,7 +83,7 @@ const Purchase = () => {
     // update saved orderDTO with new itemsCountRequested
     Object.keys(orderDTO.itemsCountRequested).forEach(itemId => {
       const quantity = orderDTO.itemsCountRequested[itemId];
-      if (quantity > 0) { // 只处理数量大于0的物品
+      if (quantity > 0) { 
           savedOrderDTO.itemsCountRequested[itemId] += quantity;
           console.log("updated item id:", itemId, "quantity:", savedOrderDTO.itemsCountRequested[itemId]);
       }
@@ -91,7 +95,7 @@ const Purchase = () => {
     // navigate to cart page
     navigate("/cart", { state: { orderDTO: savedOrderDTO } });
 
-    console.log("Submitting orderDTO:", savedOrderDTO);
+    console.log("Submitting orderDTO:", orderDTO); 
   };
 
 
