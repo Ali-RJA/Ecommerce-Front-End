@@ -25,6 +25,7 @@ function App() {
                 <NavBar /> {/* Adding the NavBar component */}
                 <div className="content">
                     <Routes>
+                        <Route path="/" element={<Home/>} />  {}
                         <Route path="/home" element={<Home/>} />
                         <Route path="/purchase" element={<Purchase />} />
                         <Route path="/purchase/paymentEntry" element={<PaymentEntry />} />

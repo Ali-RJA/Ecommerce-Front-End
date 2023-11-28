@@ -15,46 +15,73 @@ const ShippingEntry = () => {
       ...prevOrderDTO,
       [name]: value,
     }));
+    
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate('/purchase/viewOrder', { state: { orderDTO } });
+    console.log('Shipping', orderDTO);
+    localStorage.setItem('orderDTO', JSON.stringify(orderDTO));
   };
 
   return (
     <div className="container bg-beige">
-      <NavBar />
+        <h1>Shipping Entry</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Name:
+          First Name:
           <input
             type="text"
-            name="card_holder_name"
-            value={orderDTO.card_holder_name}
+            name="firstName"
+            value={orderDTO.firstName}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <br />
+        
+        <label>
+          Last Name:
+          <input
+            type="text"
+            name="lastName"
+            value={orderDTO.lastName}
             onChange={handleChange}
             required
           />
         </label>
         <br />
         <label>
-          Address Line 1:
+          Email:
           <input
             type="text"
-            name="address1"
-            value={orderDTO.address1}
+            name="email"
+            value={orderDTO.email}
             onChange={handleChange}
             required
           />
         </label>
         <br />
         <label>
-          Address Line 2:
+          Stree:
           <input
             type="text"
-            name="address2"
-            value={orderDTO.address2}
+            name="street"
+            value={orderDTO.street}
             onChange={handleChange}
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Country:
+          <input
+            type="text"
+            name="country"
+            value={orderDTO.country}
+            onChange={handleChange}
+            required
           />
         </label>
         <br />
@@ -95,7 +122,6 @@ const ShippingEntry = () => {
           Continue to View Order
         </button>
       </form>
-      <SampleFooter />
     </div>
   );
 };
