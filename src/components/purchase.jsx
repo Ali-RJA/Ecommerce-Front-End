@@ -4,7 +4,7 @@ import "./purchase.css";
 
 const Purchase = () => {
   const [orderDTO, setOrderDTO] = useState({
-  itemsCountRequested: {}, 
+  itemsCountRequested: {},
   street: "",
   city: "",
   state: "",
@@ -35,7 +35,7 @@ const Purchase = () => {
         setOrderDTO(prevDTO => ({
           ...prevDTO,
           itemUnitPrices: itemList.reduce((acc, item) => {
-            acc[item.id] = item.price; 
+            acc[item.id] = item.price;
             return acc;
           }, {}),
           itemsCountRequested: itemList.reduce((acc, item) => {
@@ -43,16 +43,6 @@ const Purchase = () => {
             return acc;
           }, {}),
         }));
-        /*
-        setOrder(prevOrder => ({
-          ...prevOrder,
-          // Set the buyQuantity array length to match the number of items
-          itemsCountRequested: itemList.reduce((acc, item) => {
-            acc[item.id] = 0; // 初始化每个商品的购买数量为0
-            return acc;
-          }, {}),
-        }));
-        */
       });
 
     // Clean-up function not needed if you're not setting up any subscriptions or timers
@@ -68,22 +58,42 @@ const Purchase = () => {
         },
         itemUnitPrices: {...prevDTO.itemUnitPrices}
       };
-  
-      localStorage.setItem('orderDTO', JSON.stringify(newDTO));
-  
+
+      //localStorage.setItem('orderDTO', JSON.stringify(newDTO));
+
       return newDTO;
     });
   };
-  
-  
-  
-  
+
+
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitting orderDTO:", orderDTO);
-    navigate("/cart", { state: { orderDTO } });
+
+    //read saved orderDTO from local storage
+    const savedOrderDTOJSON = localStorage.getItem('orderDTO');
+    const savedOrderDTO = savedOrderDTOJSON ? JSON.parse(savedOrderDTOJSON) : { itemsCountRequested: {} };
+
+    // update saved orderDTO with new itemsCountRequested
+    Object.keys(orderDTO.itemsCountRequested).forEach(itemId => {
+      const quantity = orderDTO.itemsCountRequested[itemId];
+      if (quantity > 0) { // 只处理数量大于0的物品
+          savedOrderDTO.itemsCountRequested[itemId] += quantity;
+          console.log("updated item id:", itemId, "quantity:", savedOrderDTO.itemsCountRequested[itemId]);
+      }
+    });
+
+    // save updated orderDTO to local storage
+    localStorage.setItem('orderDTO', JSON.stringify(savedOrderDTO));
+
+    // navigate to cart page
+    navigate("/cart", { state: { orderDTO: savedOrderDTO } });
+
+    console.log("Submitting orderDTO:", savedOrderDTO);
   };
+
 
   return (
     <div className="container bg-beige">
