@@ -1,116 +1,116 @@
 .payment {
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .label_class{
-    width: 80px;
-    display: block;
-  }
-  .input{
-    width: 50px;
-    display: block;
-  }
-  .label {
-    width: 120px;
-    position: fixed;
-    left: 10px;
-    text-align: center;
-    margin: 10px 0;
-    display: block;
-  }
-  .h2 {
-    font-size: 20px;
-    color: #f1356d;
-    margin-bottom: 30px;
-  }
-  .input, .create textarea, .create select {
-    width: 100%;
-    padding: 5px 10px;
-    position: 'absolute';
-    left: 50px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-    display: block;
-  }
-  .product-item .img-fluid {
-    width: 200px; /* Set a fixed width */
-    height: 200px; /* Set a fixed height */
-    object-fit: contain; /* Ensures the image's aspect ratio is preserved */
-    display: block; /* Images are block level to apply margin */
-    margin: auto; /* Center the image within the column */
-    background-color: #FFF; /* Assuming a white background for any letterboxing */
-    border: none; /* Optional: adds a border around the image */
-    outline: none;
-    box-shadow: none;
-  }
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
 
-  .col-md-4 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+.label_class {
+  width: 80px;
+  display: block;
+}
 
+.input {
+  width: 50px;
+  display: block;
+}
 
-  .button {
-    background: #f1356d;
-    color: #fff;
-    border: 0;
-    padding: 8px;
-    border-radius: 8px;
-    text-align: left;
-    cursor: pointer;
-  }
-  .pagination {
-    display: flex;
-    justify-content: center; /* This centers the children (buttons) horizontally */
-    align-items: center; /* This centers the children (buttons) vertically if the container has a specific height */
-  }
-  .product-item {
-    background: #fff; /* 白色背景 */
-    border-radius: 8px; /* 圆角边框 */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
-    padding: 20px; /* 内边距 */
-    margin-bottom: 30px; /* 与其他项目的间隔 */
-    text-align: center; /* 文本居中 */
-    transition: transform 0.2s ease-in-out; /* 悬停时的转换效果 */
-  }
+.label {
+  width: 120px;
+  position: fixed;
+  left: 10px;
+  text-align: center;
+  margin: 10px 0;
+  display: block;
+}
 
-  .product-item:hover {
-    transform: translateY(-5px); /* 悬停时轻微上移 */
-  }
+.h2 {
+  font-size: 20px;
+  color: #f1356d;
+  margin-bottom: 30px;
+}
 
-  .product-item img.img-fluid {
-    max-height: 200px; /* 图片最大高度 */
-    margin-bottom: 20px; /* 图片与文本之间的间隔 */
-    object-fit: contain; /* 保证图片不失真 */
-    border-radius: 8px; /* 图片圆角 */
-  }
+.input, .create textarea, .create select {
+  width: 100%;
+  padding: 5px 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  display: block;
+}
 
-  .product-item h5 {
-    margin-bottom: 10px; /* 标题与描述之间的间隔 */
-    color: #333; /* 标题颜色 */
-    font-weight: 400; /* 字体加粗 */
-  }
+.product-item {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+  transition: transform 0.2s ease-in-out;
+}
 
-  .product-item p {
-    color: #666; /* 段落文字颜色 */
-    font-size: 14px; /* 段落文字大小 */
-    margin-bottom: 10px; /* 段落间的间隔 */
-  }
+.product-item:hover {
+  transform: translateY(-5px);
+}
 
-  .product-item input[type='number'] {
-    width: 100%; /* 输入框宽度 */
-    padding: 10px; /* 输入框内边距 */
-    border: 1px solid #003366; /* 输入框边框 */
-    border-radius: 4px; /* 输入框圆角 */
-    margin-top: 10px; /* 输入框与价格标签之间的间隔 */
-  }
+/* 合并img-fluid的CSS规则 */
+.product-item img.img-fluid {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  background-color: #FFF;
+  border-radius: 8px;
+  max-height: 200px;
+  margin-bottom: 20px;
+}
 
-  .price-value {
-    font-size: 1.5em; /* 调整字体大小 */
-    font-weight: bold; /* 如果需要的话，可以加粗 */
-    color: #3B5998;
-  }
+.col-md-4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  background: #f1356d;
+  color: #fff;
+  border: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-item h5 {
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 400;
+}
+
+.product-item p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.product-item input[type='number'] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #003366;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.price-value {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #3B5998;
+}

@@ -44,3 +44,9 @@
 .bg-beige {
   background-color: #ffffff;
 }
+.common-container {
+  max-width: 1200px; /* 或者任何您希望的宽度 */
+  margin: 0 auto; /* 这会使容器水平居中 */
+  padding: 20px; /* 这会在容器的内容周围添加空间 */
+  box-sizing: border-box; /* 包括边界和填充在内的宽度总和 */
+}
