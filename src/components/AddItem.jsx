@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./AddItem.css";
 
 const AddItem = () => {
   const [item, setItem] = useState({
@@ -13,15 +14,15 @@ const AddItem = () => {
   const handleImageUpload = (e) => {
     const newFileMap = new Map();
     const filesArray = Array.from(e.target.files);
-  
+
     filesArray.forEach(file => {
       // Use 'file', not 'image'
       newFileMap.set(file.name.replace(/\.[^/.]+$/, ""), file);
     });
-  
+
     setFileMap(newFileMap);
-  
-    
+
+
   };
   const uploadFileToS3 = async (file, presignedUrl) => {
     try {
@@ -32,7 +33,7 @@ const AddItem = () => {
           'Content-Type': file.type,
         },
       });
-  
+
       if (response.status === 200) {
         console.log('File uploaded successfully');
         return true;
@@ -123,7 +124,7 @@ const AddItem = () => {
           onChange={(e) => setItem({ ...item, category: e.target.value })}
           placeholder="Category"
         />
-        <textarea
+        <input
           value={item.description}
           onChange={(e) => setItem({ ...item, description: e.target.value })}
           placeholder="Description"
@@ -135,7 +136,7 @@ const AddItem = () => {
           placeholder="Stock Quantity"
         />
         <input type="file" onChange={handleImageUpload} multiple />
-        <button type="submit">Upload Item</button>
+        <button type="submit" className="custom-btn mt-4">Upload Item</button>
       </form>
     </div>
   );

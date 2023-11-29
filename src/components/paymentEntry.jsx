@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import NavBar from './Navbar';
 import SampleFooter from './footer';
-import './Contact.css';
+import "./paymentEntry.css";
 import React, { useState, useEffect } from 'react';
 
 
@@ -10,7 +10,7 @@ const PaymentEntry = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [orderDTO, setOrderDTO] = useState(location.state?.orderDTO || {});
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -82,15 +82,14 @@ const PaymentEntry = () => {
     }
     console.log('Saving to localStorage:', orderDTO);
     localStorage.setItem('orderDTO', JSON.stringify(orderDTO));
-    
-    // 为了调试，检查保存后立即读取 localStorage
+
     const debugOrderDTO = JSON.parse(localStorage.getItem('orderDTO'));
     console.log('Saved in localStorage:', debugOrderDTO);
-    
+
     navigate("/purchase/shippingEntry", { state: { orderDTO } });
   };
 
-  
+
 
   // Error handling for accessing properties of orderDTO directly
   /*
@@ -119,14 +118,13 @@ const PaymentEntry = () => {
         <div>No items in the cart</div>
       )}
 
-      <h3>Payment Information:</h3>
       <form onSubmit={handleSubmit}>
         <label>
           Card Number:
           <input
             type="number"
             name="cardNumber"
-            value={orderDTO.cardNumber} 
+            value={orderDTO.cardNumber}
             onChange={handleChange}
             required
           />
@@ -137,7 +135,7 @@ const PaymentEntry = () => {
           <input
             type="text"
             name="expirationDate"
-            value={orderDTO.expirationDate} 
+            value={orderDTO.expirationDate}
             onChange={handleChange}
             required
           />
@@ -148,7 +146,7 @@ const PaymentEntry = () => {
           <input
             type="number"
             name="cvv"
-            value={orderDTO.cvv} 
+            value={orderDTO.cvv}
             onChange={handleChange}
             required
           />
@@ -159,13 +157,13 @@ const PaymentEntry = () => {
           <input
             type="text"
             name="cardHolderName"
-            value={orderDTO.cardHolderName} 
+            value={orderDTO.cardHolderName}
             onChange={handleChange}
             required
           />
         </label>
         <br />
-        <button type="submit" className="custom-btn">Continue to Shipping Information</button>
+        <button type="submit" className="custom-btn mt-4">Continue to Shipping Information</button>
       </form>
     </div>
   );

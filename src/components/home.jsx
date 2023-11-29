@@ -6,45 +6,26 @@ const Home = () => {
     <div className="home-container container">
       <img src={logo} alt="Logo" className="logo img-thumbnail w-40 mb-7" />
 
-      <h1 className="display-3">Urban Threads</h1>
 
       <div className="row">
         <div className="col-12">
-          <h2 className="display-6">Discover Your Style</h2>
+          <h2 className="display-6">Who We Are</h2>
           <p className="lead mb-5">
-            At Urban Threads, we celebrate the diversity of fashion. Our expansive collection ranges from the avant-garde to the classic, offering something for every wardrobe. Discover attire that speaks to your personality and elevates your style.
+            Catering to fashion-forward individuals aged 18-34, we embrace all genders and celebrate diversity. Our heart beats in Ohio, reflecting the pulse of fashion trends, lifestyle, and culture. We understand the importance of ethical sourcing, sustainability, and self-expression through fashion. Our customers, from the middle to upper-middle class, value convenience and the latest trends in e-commerce shopping.
           </p>
         </div>
 
         <div className="col-12">
-          <h2 className="display-6 mb-3">Quality Meets Variety</h2>
-          <p className="lead mb-5">
-            Dive into a world where quality meets variety. Each item in our collection is chosen for its craftsmanship, durability, and style. We provide a wide range of clothing options, from luxurious designer wear to affordable everyday essentials.
-          </p>
-        </div>
-
-        <div className="col-12">
-          <h2 className="display-6 mb-3">Sustainable Fashion for the Future</h2>
-          <p className="lead mb-5">
-            Join us in our commitment to sustainability. At Urban Threads, we prioritize eco-friendly materials and ethical manufacturing processes, ensuring that your fashion choices contribute to a healthier planet.
-          </p>
-        </div>
-
-        <div className="col-12">
-          <h2 className="display-6 mb-3">Exclusive Online Experiences</h2>
-          <p className="lead mb-5">
-            Experience the convenience of online shopping with exclusive features. Enjoy personalized recommendations and a seamless checkout process. We bring the latest in fashion technology to your fingertips.
-          </p>
-        </div>
-
-        <div className="col-12">
-          <h2 className="display-6 mb-3">Fashion Forward, Customer Centered</h2>
-          <p className="lead mb-5">
-            Your satisfaction is our top priority. We offer exceptional customer service, hassle-free returns, and a community platform for fashion enthusiasts. At Urban Threads, every customer is a part of our fashion family.
-          </p>
+          <h2 className="display-6">Why Shop With Us?</h2>
+          <ul className="lead mb-5">
+            <li><strong>Exclusive Local Pioneer</strong>: Stand out with our unique styles, setting the trend in Ohio's fashion scene.</li>
+            <li><strong>Cost-Effective Pricing</strong>: Enjoy high-quality fashion without the high costs. Our online presence means more savings for you.</li>
+            <li><strong>Speedy Delivery</strong>: Get your fashion fix fast with our efficient local shipping.</li>
+          </ul>
         </div>
       </div>
     </div>
   );
 };
+
 export default Home;
