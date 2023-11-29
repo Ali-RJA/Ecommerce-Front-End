@@ -12,9 +12,7 @@ const Header = () => {
 
     return (
         <header className="header">
-            <div className="logo-section">
-                <img src={logo} alt="Your Logo" className="logo"/>
-            </div>
+
             <div className="search-and-login">
             <div className="search-container">
                 <input type="text" id="search-input" placeholder="Search..." className="search-bar"/>

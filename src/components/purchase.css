@@ -5,7 +5,7 @@
   }
   .label_class{
     width: 80px;
-    display: block; 
+    display: block;
   }
   .input{
     width: 50px;
@@ -41,17 +41,19 @@
     display: block; /* Images are block level to apply margin */
     margin: auto; /* Center the image within the column */
     background-color: #FFF; /* Assuming a white background for any letterboxing */
-    border: 1px solid #ddd; /* Optional: adds a border around the image */
+    border: none; /* Optional: adds a border around the image */
+    outline: none;
+    box-shadow: none;
   }
-  
+
   .col-md-4 {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-  
-  
+
+
   .button {
     background: #f1356d;
     color: #fff;
@@ -60,4 +62,55 @@
     border-radius: 8px;
     text-align: left;
     cursor: pointer;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center; /* This centers the children (buttons) horizontally */
+    align-items: center; /* This centers the children (buttons) vertically if the container has a specific height */
+  }
+  .product-item {
+    background: #fff; /* 白色背景 */
+    border-radius: 8px; /* 圆角边框 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
+    padding: 20px; /* 内边距 */
+    margin-bottom: 30px; /* 与其他项目的间隔 */
+    text-align: center; /* 文本居中 */
+    transition: transform 0.2s ease-in-out; /* 悬停时的转换效果 */
+  }
+
+  .product-item:hover {
+    transform: translateY(-5px); /* 悬停时轻微上移 */
+  }
+
+  .product-item img.img-fluid {
+    max-height: 200px; /* 图片最大高度 */
+    margin-bottom: 20px; /* 图片与文本之间的间隔 */
+    object-fit: contain; /* 保证图片不失真 */
+    border-radius: 8px; /* 图片圆角 */
+  }
+
+  .product-item h5 {
+    margin-bottom: 10px; /* 标题与描述之间的间隔 */
+    color: #333; /* 标题颜色 */
+    font-weight: 400; /* 字体加粗 */
+  }
+
+  .product-item p {
+    color: #666; /* 段落文字颜色 */
+    font-size: 14px; /* 段落文字大小 */
+    margin-bottom: 10px; /* 段落间的间隔 */
+  }
+
+  .product-item input[type='number'] {
+    width: 100%; /* 输入框宽度 */
+    padding: 10px; /* 输入框内边距 */
+    border: 1px solid #003366; /* 输入框边框 */
+    border-radius: 4px; /* 输入框圆角 */
+    margin-top: 10px; /* 输入框与价格标签之间的间隔 */
+  }
+
+  .price-value {
+    font-size: 1.5em; /* 调整字体大小 */
+    font-weight: bold; /* 如果需要的话，可以加粗 */
+    color: #3B5998;
   }

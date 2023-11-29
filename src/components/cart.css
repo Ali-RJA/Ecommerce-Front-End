@@ -1,63 +1,62 @@
-.payment {
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .label_class{
-    width: 80px;
-    display: block; 
-  }
-  .input{
-    width: 50px;
-    display: block;
-  }
-  .label {
-    width: 120px;
-    position: fixed;
-    left: 10px;
-    text-align: center;
-    margin: 10px 0;
-    display: block;
-  }
-  .h2 {
-    font-size: 20px;
-    color: #f1356d;
-    margin-bottom: 30px;
-  }
-  .input, .create textarea, .create select {
-    width: 100%;
-    padding: 5px 10px;
-    position: 'absolute';
-    left: 50px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    box-sizing: border-box;
-    display: block;
-  }
-  .product-item .img-fluid {
-    width: 200px; /* Set a fixed width */
-    height: 200px; /* Set a fixed height */
-    object-fit: contain; /* Ensures the image's aspect ratio is preserved */
-    display: block; /* Images are block level to apply margin */
-    margin: auto; /* Center the image within the column */
-    background-color: #FFF; /* Assuming a white background for any letterboxing */
-    border: 1px solid #ddd; /* Optional: adds a border around the image */
-  }
-  
-  .col-md-4 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  
-  .button {
-    background: #f1356d;
-    color: #fff;
-    border: 0;
-    padding: 8px;
-    border-radius: 8px;
-    text-align: left;
-    cursor: pointer;
-  }
+.shopping-cart {
+  background-color: #f1f1f1; /* 背景颜色 */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 简单的阴影 */
+}
+
+.shopping-cart h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.product-item {
+  background: #fff; /* 白色背景 */
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px; /* 圆角边框 */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
+  display: flex;
+  align-items: center;
+}
+
+.product-item img.img-fluid {
+  max-width: 120px; /* 限制图片宽度 */
+  margin-right: 20px; /* 图片与文本之间的间隔 */
+  border-radius: 4px;
+}
+
+.product-item p {
+  color: #666; /* 深灰色文本 */
+  margin: 0;
+  padding: 5px 0;
+}
+
+.checkout-btn {
+  background-color: #add8e6; /* 浅蓝色 */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-top: 20px; /* 按钮与商品列表之间的间隔 */
+  font-size: 16px; /* 按钮文字大小 */
+  font-weight: bold;
+  text-align: center;
+}
+
+.checkout-btn:hover {
+  background-color: #9ec2e6; /* 鼠标悬停时的颜色变深 */
+  transition: background-color 0.3s ease;
+}
+
+/* 当没有商品时显示的文本样式 */
+.shopping-cart .no-items {
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+}

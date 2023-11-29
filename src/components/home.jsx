@@ -3,14 +3,14 @@ import logo from "../assets/logo.png";
 
 const Home = () => {
   return (
-    <div className="home-container container bg-beige">
+    <div className="home-container container">
       <img src={logo} alt="Logo" className="logo img-thumbnail w-40 mb-7" />
 
-      <h1 className="display-3 text-center mb-4">Urban Threads</h1>
+      <h1 className="display-3">Urban Threads</h1>
 
       <div className="row">
         <div className="col-12">
-          <h2 className="display-6 mb-3">Discover Your Style</h2>
+          <h2 className="display-6">Discover Your Style</h2>
           <p className="lead mb-5">
             At Urban Threads, we celebrate the diversity of fashion. Our expansive collection ranges from the avant-garde to the classic, offering something for every wardrobe. Discover attire that speaks to your personality and elevates your style.
           </p>

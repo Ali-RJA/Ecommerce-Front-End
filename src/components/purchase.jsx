@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "./purchase.css";
 
 const Purchase = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const itemsPerPage = 12;
+
   const [orderDTO, setOrderDTO] = useState({
   itemsCountRequested: {},
   street: "",
@@ -29,17 +33,18 @@ const Purchase = () => {
   useEffect(() => {
     const savedOrderDTOJSON = localStorage.getItem('orderDTO');
     const savedOrderDTO = savedOrderDTOJSON ? JSON.parse(savedOrderDTOJSON) : {};
-  
-    fetch("http://localhost:8080/urban-threads/items?pageNumber=0&sizeOfPage=100")
+
+    fetch(`http://localhost:8080/urban-threads/items?pageNumber=${currentPage - 1}&sizeOfPage=${itemsPerPage}`)
       .then(response => response.json())
       .then(data => {
         const itemList = data.content || [];
-  
+        setTotalPages(data.totalPages); // 设置总页数
+
         const itemsCountRequested = savedOrderDTO.itemsCountRequested || itemList.reduce((acc, item) => {
           acc[item.id] = 0;
           return acc;
         }, {});
-  
+
         setItems(itemList);
         setOrderDTO(prevDTO => ({
           ...prevDTO,
@@ -50,8 +55,9 @@ const Purchase = () => {
           }, {})
         }));
       });
-  }, []);
-  
+  }, [currentPage]);
+
+
   const handleQuantityChange = (itemId, quantity) => {
     setOrderDTO(prevDTO => {
       const newDTO = {
@@ -62,8 +68,6 @@ const Purchase = () => {
         },
         itemUnitPrices: {...prevDTO.itemUnitPrices}
       };
-
-      //localStorage.setItem('orderDTO', JSON.stringify(newDTO));
 
       return newDTO;
     });
@@ -83,7 +87,7 @@ const Purchase = () => {
     // update saved orderDTO with new itemsCountRequested
     Object.keys(orderDTO.itemsCountRequested).forEach(itemId => {
       const quantity = orderDTO.itemsCountRequested[itemId];
-      if (quantity > 0) { 
+      if (quantity > 0) {
           savedOrderDTO.itemsCountRequested[itemId] += quantity;
           console.log("updated item id:", itemId, "quantity:", savedOrderDTO.itemsCountRequested[itemId]);
       }
@@ -95,7 +99,7 @@ const Purchase = () => {
     // navigate to cart page
     navigate("/cart", { state: { orderDTO: savedOrderDTO } });
 
-    console.log("Submitting orderDTO:", orderDTO); 
+    console.log("Submitting orderDTO:", orderDTO);
   };
 
 
@@ -112,9 +116,9 @@ const Purchase = () => {
                 className="img-fluid"
               />
               <h5>{item.itemName}</h5>
-              <p>{item.description}</p>
-              <p>Price: ${item.price}</p>
-              <p>Stock: {item.stockQuantity}</p>
+              <p>{item.description}</p >
+              <p className="price">Price: <span className="price-value">{item.price}</span></p>
+              <p>Stock: {item.stockQuantity}</p >
               <input
                 type="number"
                 min="0"
@@ -131,6 +135,19 @@ const Purchase = () => {
             </div>
           ))}
         </div>
+        <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            type="button"
+            key={index}
+            onClick={() => setCurrentPage(index + 1)}
+            className={currentPage === index + 1 ? "active" : ""}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
+
         <button type="submit" className="custom-btn mt-4">
           Add to Shopping Cart
         </button>
