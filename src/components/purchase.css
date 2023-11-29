@@ -39,7 +39,6 @@
 }
 
 .product-item {
-  background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -90,15 +89,13 @@
 }
 
 .product-item h5 {
-  margin-bottom: 10px;
   color: #333;
   font-weight: 400;
 }
 
 .product-item p {
-  color: #666;
+  color: #000000;
   font-size: 14px;
-  margin-bottom: 10px;
 }
 
 .product-item input[type='number'] {
@@ -106,7 +103,6 @@
   padding: 10px;
   border: 1px solid #003366;
   border-radius: 4px;
-  margin-top: 10px;
 }
 
 .price-value {
@@ -114,3 +110,6 @@
   font-weight: bold;
   color: #3B5998;
 }
+
+
+

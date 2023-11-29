@@ -52,21 +52,25 @@ const ShoppingCart = () => {
 
   return (
     <div className="shopping-cart">
-      <h2>Shopping Cart</h2>
       {cartItems.length > 0 ? (
         cartItems.map(item => (
-          <div key={item.id} className="product-item">  {}
+        <div key={item.id} className="product-item">
+          <div className="product-image">
             <img src={item.imageUrl} alt={item.itemName} className="img-fluid" />
-            <p>{item.itemName}</p>
-            <p>Price: ${item.price.toFixed(2)}</p>
-            <p>Quantity: {item.quantity}</p>
           </div>
+          <div className="product-details">
+            <p className="product-name">{item.itemName}</p>
+            <p className="product-quantity">Quantity: {item.quantity}</p>
+            <p className="product-price">Price: ${item.price.toFixed(2)}</p>
+          </div>
+        </div>
+
         ))
 
       ) : (
         <div>No items in the cart</div>
       )}
-      <button onClick={handleCheckout} className="checkout-btn">Checkout</button>
+      <button onClick={handleCheckout} className="custom-btn mt-4">Checkout</button>
     </div>
   );
 };
