@@ -21,7 +21,6 @@ function App() {
     return (
         <div className="App">  {/* 修正 className 的格式 */}
             <Router>
-                <Header />
                 <NavBar /> {/* Adding the NavBar component */}
                 <div className="content">
                     <Routes>

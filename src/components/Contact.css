@@ -1,5 +1,16 @@
 .custom-btn {
-    background-color: #F7882F !important;
-    border: none;
-}
+    background-color: #3B5998; /* 浅蓝色 */
+    color: #ffffff; /* 白色 */
+    border: none; /* 移除边框，如果有的话 */
+    padding: 10px 20px; /* 按钮内边距，可以根据需要调整 */
+    border-radius: 5px; /* 圆角边框 */
+    cursor: pointer; /* 鼠标悬停时的手形指针 */
+    font-size: 1rem; /* 字体大小，可以根据需要调整 */
+    font-weight: bold; /* 加粗字体 */
+    transition: background-color 0.3s ease; /* 悬停时背景色的渐变效果 */
+  }
+
+  .custom-btn:hover {
+    background-color: #3d7fc0; /* 按钮悬停时的背景色，稍微比默认状态更深一点 */
+  }
 
