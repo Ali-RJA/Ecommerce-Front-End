@@ -1,62 +1,34 @@
 .shopping-cart {
-  background-color: #f1f1f1; /* 背景颜色 */
+  border: 1px solid #ccc;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 简单的阴影 */
+  margin: 20px;
+  width: 1000px;
+  display: inline-table;
 }
 
-.shopping-cart h2 {
-  color: #333;
-  text-align: center;
-  margin-bottom: 30px;
+.product-image {
+  padding-right: 15px;
 }
 
-.product-item {
-  background: #fff; /* 白色背景 */
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 8px; /* 圆角边框 */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
-  display: flex;
-  align-items: center;
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
-.product-item img.img-fluid {
-  max-width: 120px; /* 限制图片宽度 */
-  margin-right: 20px; /* 图片与文本之间的间隔 */
-  border-radius: 4px;
+.product-details {
+  flex-grow: 1;
 }
 
-.product-item p {
-  color: #666; /* 深灰色文本 */
-  margin: 0;
-  padding: 5px 0;
-}
-
-.checkout-btn {
-  background-color: #add8e6; /* 浅蓝色 */
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  margin-top: 20px; /* 按钮与商品列表之间的间隔 */
-  font-size: 16px; /* 按钮文字大小 */
+.product-name {
+  font-size: 16px; /* 减少字体大小 */
   font-weight: bold;
-  text-align: center;
+  margin: 0;
+  line-height: 1.2; /* 新增的属性，减少行间距 */
 }
 
-.checkout-btn:hover {
-  background-color: #9ec2e6; /* 鼠标悬停时的颜色变深 */
-  transition: background-color 0.3s ease;
-}
-
-/* 当没有商品时显示的文本样式 */
-.shopping-cart .no-items {
-  text-align: center;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
+.product-price {
+  font-size: 14px; /* 减少字体大小 */
+  color: #333;
+  margin: 5px 0;
 }
