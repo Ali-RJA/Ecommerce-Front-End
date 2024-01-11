@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./About.css";
+import "./about.css";
 
 const About = () => {
   return (
