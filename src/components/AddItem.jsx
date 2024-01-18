@@ -49,17 +49,14 @@ const AddItem = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let imagesMap = new Map();
-    fileMap.forEach((fileName, file) => {
-      imagesMap.set(file, "");
-    });
+    let imageFileNames = Array.from(fileMap.keys());
     const itemData = {
         itemName: item.itemName,
         price: item.price,
         category: item.category,
         description: item.description,
         stockQuantity: item.stockQuantity,
-        images: Object.fromEntries(imagesMap)
+        images: imageFileNames
     };
     console.log(itemData);
 

@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './contact.css';
+import './Contact.css';
 const Contact = () => {
   return (
     <div className="container bg-beige">

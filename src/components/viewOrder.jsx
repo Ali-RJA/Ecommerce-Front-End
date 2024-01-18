@@ -29,7 +29,7 @@ const ViewOrder = () => {
             const savedOrderDTO = JSON.parse(localStorage.getItem('orderDTO') || '{}');
             const itemsCountRequested = savedOrderDTO.itemsCountRequested || {};
             const itemUnitPrices = savedOrderDTO.itemUnitPrices || {};
-    
+
             const itemsWithDetails = itemsArray
             .filter(item => itemsCountRequested[item.id])
             .map(item => {
@@ -50,7 +50,7 @@ const ViewOrder = () => {
             console.error('Error fetching cart items:', error);
           });
       };
-    
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -85,7 +85,7 @@ const ViewOrder = () => {
             <p>City: {orderDTO.city}</p>
             <p>Street: {orderDTO.street}</p>
             <p>Zip: {orderDTO.zip}</p>
-            
+
             <form onSubmit={handleSubmit}>
                 <button type="submit" className="custom-btn">Next Page</button>
             </form>
